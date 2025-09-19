@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VELAROMA - Calcula tu kit ideal</title>
+  <title>Velaroma - Aromatiza tus espacios</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -12,8 +15,8 @@
   <header class="header">
     <div class="container header-content">
       <div class="logo">
-        <img src="assets/LOGO.png" alt="Velaroma Logo">
-        <h1>VELAROMA</h1>
+        <img src="assets/logo.png" alt="Velaroma Logo">
+        <span>VELAROMA</span>
       </div>
       <nav class="nav">
         <a href="#formulario">Calculadora</a>
@@ -23,12 +26,11 @@
     </div>
   </header>
 
-  <!-- HERO PRINCIPAL -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-text">
-      <h2>Aromatiza tus espacios con estilo</h2>
-      <p>En Velaroma diseñamos experiencias a través de aromas que transforman tu hogar y tus espacios. 
-      Calcula tu kit ideal y obtené un paquete exclusivo con descuento.</p>
+    <div class="hero-content">
+      <h1>VELAROMA</h1>
+      <p>CANDLES & DIFFUSERS</p>
       <a href="#formulario" class="cta-button">Comenzar</a>
     </div>
   </section>
@@ -37,15 +39,15 @@
   <section id="formulario" class="form-section">
     <div class="form-container">
       <h2>Calcula tu kit ideal</h2>
-      <p>Diseñá tu experiencia única y descubrí cuántos productos necesitas para tus espacios.</p>
+      <p class="subtitle">Diseñá tu experiencia única y descubrí cuántos productos necesitas para tus espacios.</p>
       
-      <!-- FORMULARIO INTERACTIVO -->
+      <!-- PASO 1 -->
       <div class="form-step active" id="step-1">
         <h3>¿Cuántos espacios querés aromatizar?</h3>
         <div class="cards">
           <div class="card">
             <img src="assets/pequeño.jpg" alt="Espacio pequeño" loading="lazy">
-            <h3>Pequeños</h3>
+            <h4>Pequeños</h4>
             <p>&lt; 15m²</p>
             <div class="counter">
               <button onclick="updateCounter('small', -1)">-</button>
@@ -56,40 +58,8 @@
 
           <div class="card">
             <img src="assets/mediano.jpg" alt="Espacio mediano" loading="lazy">
-            <h3>Medianos</h3>
+            <h4>Medianos</h4>
             <p>15 - 25m²</p>
             <div class="counter">
               <button onclick="updateCounter('medium', -1)">-</button>
               <span id="medium-count">0</span>
-              <button onclick="updateCounter('medium', 1)">+</button>
-            </div>
-          </div>
-
-          <div class="card">
-            <img src="assets/grande.jpg" alt="Espacio grande" loading="lazy">
-            <h3>Grandes</h3>
-            <p>&gt; 25m²</p>
-            <div class="counter">
-              <button onclick="updateCounter('large', -1)">-</button>
-              <span id="large-count">0</span>
-              <button onclick="updateCounter('large', 1)">+</button>
-            </div>
-          </div>
-        </div>
-        <div class="button-center">
-          <button class="next-btn" onclick="nextStep()">Continuar</button>
-        </div>
-      </div>
-
-      <div class="form-step" id="step-2">
-        <h3>¿Cómo preferís aromatizar tus espacios?</h3>
-        <div class="checkbox-group">
-          <label><input type="checkbox" value="Velas"> Velas</label>
-          <label><input type="checkbox" value="Difusores"> Difusores</label>
-          <label><input type="checkbox" value="Home Sprays"> Home Sprays</label>
-        </div>
-        <div class="button-center">
-          <button class="prev-btn" onclick="prevStep()">Atrás</button>
-          <button class="next-btn" onclick="nextStep()">Continuar</button>
-        </div>
-      </d
