@@ -1,74 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VELAROMA | Aromatización Profesional de Espacios</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Velaroma</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- HERO SECTION -->
-  <header class="hero">
-    <div class="container">
-      <h1>El aroma que transforma tu espacio</h1>
-      <p>VELAROMA mantiene tu hogar o negocio aromatizado de forma profesional y continua.</p>
-      <a href="#contacto" class="btn-primary">QUIERO UNA PRUEBA GRATUITA</a>
-    </div>
-  </header>
+<div class="form-container">
 
-  <!-- QUIÉNES SOMOS -->
-  <section class="about">
-    <div class="container">
-      <h2>¿Quiénes somos?</h2>
-      <p>Soy <strong>Natalia Martínez</strong>, fundadora de VELAROMA. Creamos experiencias sensoriales para hogares y negocios a través del aroma.</p>
-    </div>
-  </section>
+  <!-- PASO 1 - Cantidad de espacios -->
+  <div class="form-step active" id="step-1">
+    <h2>¿Cuántos espacios querés aromatizar?</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="pequeno.png" alt="Espacio pequeño">
+        <h3>Pequeños</h3>
+        <p>&lt; 15m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('small', -1)">-</button>
+          <span id="small-count">0</span>
+          <button onclick="updateCounter('small', 1)">+</button>
+        </div>
+      </div>
 
-  <!-- SERVICIOS -->
-  <section class="servicios">
-    <div class="container">
-      <h2>¿Qué hacemos?</h2>
-      <ul>
-        <li>✔ Evaluación personalizada del espacio</li>
-        <li>✔ Aromas diseñados para cada ambiente</li>
-        <li>✔ Sistemas automáticos de aromatización</li>
-        <li>✔ Mantenimiento incluido</li>
-      </ul>
-    </div>
-  </section>
+      <div class="card">
+        <img src="mediano.png" alt="Espacio mediano">
+        <h3>Medianos</h3>
+        <p>15 - 25m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('medium', -1)">-</button>
+          <span id="medium-count">0</span>
+          <button onclick="updateCounter('medium', 1)">+</button>
+        </div>
+      </div>
 
-  <!-- TESTIMONIOS -->
-  <section class="testimonios">
-    <div class="container">
-      <h2>Lo que dicen nuestros clientes</h2>
-      <blockquote>“Mi casa huele a hogar. Suave, natural, reconfortante.” – Laura</blockquote>
-      <blockquote>“Mis pacientes notan la diferencia apenas entran.” – Dra. Celina</blockquote>
+      <div class="card">
+        <img src="grande.png" alt="Espacio grande">
+        <h3>Grandes</h3>
+        <p>&gt; 25m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('large', -1)">-</button>
+          <span id="large-count">0</span>
+          <button onclick="updateCounter('large', 1)">+</button>
+        </div>
+      </div>
     </div>
-  </section>
+    <button class="next-btn" onclick="nextStep()">Continuar</button>
+  </div>
 
-  <!-- CONTACTO -->
-  <section id="contacto" class="contacto">
-    <div class="container">
-      <h2>¿Querés una prueba gratuita?</h2>
-      <p>Completá el formulario y nos pondremos en contacto con vos.</p>
-      <form>
-        <input type="text" placeholder="Tu nombre" required />
-        <input type="email" placeholder="Tu email" required />
-        <textarea placeholder="Contanos sobre tu espacio..." required></textarea>
-        <button type="submit" class="btn-primary">Enviar</button>
-      </form>
+  <!-- PASO 2 - Preferencias -->
+  <div class="form-step" id="step-2">
+    <h2>¿Cómo preferís aromatizar tus espacios?</h2>
+    <div class="checkbox-group">
+      <label><input type="checkbox" value="Velas"> Velas</label>
+      <label><input type="checkbox" value="Difusores"> Difusores</label>
+      <label><input type="checkbox" value="Home Sprays"> Home Sprays</label>
     </div>
-  </section>
+    <button class="prev-btn" onclick="prevStep()">Atrás</button>
+    <button class="next-btn" onclick="nextStep()">Continuar</button>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>VELAROMA® – Todos los derechos reservados</p>
+  <!-- PASO 3 - Datos de contacto -->
+  <div class="form-step" id="step-3">
+    <h2>¡Ya casi está listo tu cálculo!</h2>
+    <p>Dejanos tus datos para enviarte tu recomendación personalizada y tu cupón exclusivo.</p>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Nombre completo" required>
+      <input type="tel" id="whatsapp" placeholder="WhatsApp" required>
+      <input type="email" id="email" placeholder="Email" required>
+    </form>
+    <button class="prev-btn" onclick="prevStep()">Atrás</button>
+    <button class="next-btn" onclick="nextStep()">Ver resultado</button>
+  </div>
+
+  <!-- PASO 4 - Resultado final -->
+  <div class="form-step" id="step-4">
+    <h2>Tu recomendación personalizada</h2>
+    <p id="result-text"></p>
+    <div class="cta-buttons">
+      <button class="buy-btn">Comprar ahora</button>
+      <button class="whatsapp-btn">Hablar por WhatsApp</button>
     </div>
-  </footer>
+  </div>
 
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
