@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora Velaroma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="form-container">
+
+  <!-- PASO 1 - Cantidad de espacios -->
+  <div class="form-step active" id="step-1">
+    <h2>¿Cuántos espacios querés aromatizar?</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="pequeno.png" alt="Espacio pequeño">
+        <h3>Pequeños</h3>
+        <p>&lt; 15m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('small', -1)">-</button>
+          <span id="small-count">0</span>
+          <button onclick="updateCounter('small', 1)">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="mediano.png" alt="Espacio mediano">
+        <h3>Medianos</h3>
+        <p>15 - 25m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('medium', -1)">-</button>
+          <span id="medium-count">0</span>
+          <button onclick="updateCounter('medium', 1)">+</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="grande.png" alt="Espacio grande">
+        <h3>Grandes</h3>
+        <p>&gt; 25m²</p>
+        <div class="counter">
+          <button onclick="updateCounter('large', -1)">-</button>
+          <span id="large-count">0</span>
+          <button onclick="updateCounter('large', 1)">+</button>
+        </div>
+      </div>
+    </div>
+    <button class="next-btn" onclick="nextStep()">Continuar</button>
+  </div>
+
+  <!-- PASO 2 - Preferencias -->
+  <div class="form-step" id="step-2">
+    <h2>¿Cómo preferís aromatizar tus espacios?</h2>
+    <div class="checkbox-group">
+      <label><input type="checkbox" value="Velas"> Velas</label>
+      <label><input type="checkbox" value="Difusores"> Difusores</label>
+      <label><input type="checkbox" value="Home Sprays"> Home Sprays</label>
+    </div>
+    <button class="prev-btn" onclick="prevStep()">Atrás</button>
+    <button class="next-btn" onclick="nextStep()">Continuar</button>
+  </div>
+
+  <!-- PASO 3 - Datos de contacto -->
+  <div class="form-step" id="step-3">
+    <h2>¡Ya casi está listo tu cálculo!</h2>
+    <p>Dejanos tus datos para enviarte tu recomendación personalizada y tu cupón exclusivo.</p>
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Nombre completo" required>
+      <input type="tel" id="whatsapp" placeholder="WhatsApp" required>
+      <input type="email" id="email" placeholder="Email" required>
+    </form>
+    <button class="prev-btn" onclick="prevStep()">Atrás</button>
+    <button class="next-btn" onclick="nextStep()">Ver resultado</button>
+  </div>
+
+  <!-- PASO 4 - Resultado final -->
+  <div class="form-step" id="step-4">
+    <h2>Tu recomendación personalizada</h2>
+    <p id="result-text"></p>
+    <div class="cta-buttons">
+      <button class="buy-btn">Comprar ahora</button>
+      <button class="whatsapp-btn">Hablar por WhatsApp</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
