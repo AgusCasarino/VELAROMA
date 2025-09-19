@@ -14,8 +14,10 @@
   <div class="form-step active" id="step-1">
     <h2>¿Cuántos espacios querés aromatizar?</h2>
     <div class="cards">
+      
+      <!-- Espacios pequeños -->
       <div class="card">
-        <img src="pequeno.png" alt="Espacio pequeño">
+        <img src="assets/pequeño.jpg" alt="Espacio pequeño">
         <h3>Pequeños</h3>
         <p>&lt; 15m²</p>
         <div class="counter">
@@ -25,8 +27,9 @@
         </div>
       </div>
 
+      <!-- Espacios medianos -->
       <div class="card">
-        <img src="mediano.png" alt="Espacio mediano">
+        <img src="assets/mediano.jpg" alt="Espacio mediano">
         <h3>Medianos</h3>
         <p>15 - 25m²</p>
         <div class="counter">
@@ -36,8 +39,9 @@
         </div>
       </div>
 
+      <!-- Espacios grandes -->
       <div class="card">
-        <img src="grande.png" alt="Espacio grande">
+        <img src="assets/grande.jpg" alt="Espacio grande">
         <h3>Grandes</h3>
         <p>&gt; 25m²</p>
         <div class="counter">
@@ -46,6 +50,7 @@
           <button onclick="updateCounter('large', 1)">+</button>
         </div>
       </div>
+
     </div>
     <button class="next-btn" onclick="nextStep()">Continuar</button>
   </div>
@@ -90,4 +95,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
