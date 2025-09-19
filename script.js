@@ -37,14 +37,23 @@ function prevStep() {
 
 function calculateResults() {
   const totalProducts = (formData.small * 1) + (formData.medium * 2) + (formData.large * 3);
+
   const preferences = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
                            .map(el => el.value);
 
+  const name = document.getElementById('name').value.trim();
+  const whatsapp = document.getElementById('whatsapp').value.trim();
+  const email = document.getElementById('email').value.trim();
+
   const resultText = `
-    Espacios seleccionados: ${formData.small} pequeños, ${formData.medium} medianos, ${formData.large} grandes.<br>
-    Total de productos recomendados: <strong>${totalProducts}</strong><br>
-    Preferencias: ${preferences.join(", ")}
+    <strong>Resultado para ${name}</strong><br><br>
+    Espacios:<br>
+    - Pequeños: ${formData.small}<br>
+    - Medianos: ${formData.medium}<br>
+    - Grandes: ${formData.large}<br><br>
+    Total de productos recomendados: <strong>${totalProducts}</strong><br><br>
+    Preferencias: ${preferences.join(", ") || "No seleccionadas"}
   `;
-  
+
   document.getElementById("result-text").innerHTML = resultText;
 }
