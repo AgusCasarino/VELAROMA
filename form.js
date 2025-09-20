@@ -37,15 +37,17 @@ function goToStep2() {
   formData.totalPoints = calculateTotalPoints();
 
   const summary = `
-    <strong>Resumen de puntos de aroma:</strong>
-    - Espacios pequeños (${formData.small}): ${formData.small * 1} puntos<br>
-    - Espacios medianos (${formData.medium}): ${formData.medium * 2} puntos<br>
-    - Espacios grandes (${formData.large}): ${formData.large * 3} puntos<br><br>
-    <strong>Total: ${formData.totalPoints} puntos de aroma</strong>
+    EN TU CASO TE RECOMENDAMOS USAR un total de <strong>${formData.totalPoints} puntos de aroma</strong>:<br><br>
+    ${formData.small > 0 ? `${formData.small * 1} punto(s) para tus espacios pequeños.<br>` : ""}
+    ${formData.medium > 0 ? `${formData.medium * 2} puntos para tus espacios medianos.<br>` : ""}
+    ${formData.large > 0 ? `${formData.large * 3} puntos para tus espacios grandes o abiertos.` : ""}
   `;
   document.getElementById("points-summary").innerHTML = summary;
 
-  nextStep();
+  document.getElementById(`step-${currentStep}`).classList.remove("active");
+  currentStep = 2;
+  document.getElementById(`step-${currentStep}`).classList.add("active");
+  updateStepper();
 }
 
 function nextStep() {
@@ -63,7 +65,7 @@ function prevStep() {
 }
 
 function generateFinalRecommendation() {
-  const selectedPrefs = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(e => e.value);
+  const selectedPrefs = Array.from(document.querySelectorAll('.option-cards input:checked')).map(e => e.value);
 
   if (selectedPrefs.length === 0) {
     alert("Selecciona al menos una opción para cubrir los puntos de aroma.");
@@ -73,7 +75,6 @@ function generateFinalRecommendation() {
 
   formData.prefs = selectedPrefs;
 
-  // Distribución de puntos
   let remaining = formData.totalPoints;
   const distribution = { Difusores: 0, Velas: 0, "Home Sprays": 0 };
 
@@ -91,7 +92,6 @@ function generateFinalRecommendation() {
     distribution["Home Sprays"] = remaining;
   }
 
-  // Ajuste: cada tipo elegido debe tener al menos 1
   for (const type of selectedPrefs) {
     if (distribution[type] === 0) {
       distribution[type] = 1;
@@ -116,7 +116,6 @@ function generateFinalRecommendation() {
 document.addEventListener("DOMContentLoaded", () => {
   updateStepper();
 
-  // Paso 3 -> Paso 4
   const step3NextButton = document.querySelector("#step-3 .next-btn");
   step3NextButton.addEventListener("click", () => {
     generateFinalRecommendation();
