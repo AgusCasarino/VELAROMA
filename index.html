@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velaroma - Calcula tu kit ideal</title>
+  <meta name="description" content="Calculá tu kit de aromas Velaroma y obtené tu recomendación personalizada con descuento exclusivo.">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +17,6 @@
     <div class="container header-content">
       <div class="logo">
         <img src="assets/logo.png" alt="Velaroma Logo">
-        <span> CALCULADORA </span>
       </div>
       <nav class="nav">
         <a href="#formulario">Calculadora</a>
@@ -28,9 +28,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>VELAROMA</h1>
-      <p>CANDLES & DIFFUSERS</p>
+    <div class="hero-overlay">
       <a href="#formulario" class="cta-button">Comenzar</a>
     </div>
   </section>
@@ -38,6 +36,17 @@
   <!-- FORMULARIO -->
   <section id="formulario" class="form-section">
     <div class="form-container">
+      
+      <!-- Barra de progreso -->
+      <div class="stepper">
+        <div class="stepper-label">
+          <span id="step-label">Paso 1 de 4</span>
+        </div>
+        <div class="stepper-bar">
+          <div id="stepper-progress"></div>
+        </div>
+      </div>
+
       <h2>Calcula tu kit ideal</h2>
       <p class="subtitle">Diseñá tu experiencia única y descubrí cuántos productos necesitas para tus espacios.</p>
       
@@ -87,9 +96,18 @@
       <div class="form-step" id="step-2">
         <h3>¿Cómo preferís aromatizar tus espacios?</h3>
         <div class="checkbox-group">
-          <label><input type="checkbox" value="Velas"> Velas</label>
-          <label><input type="checkbox" value="Difusores"> Difusores</label>
-          <label><input type="checkbox" value="Home Sprays"> Home Sprays</label>
+          <label>
+            <input type="checkbox" value="Velas">
+            <span>Velas</span>
+          </label>
+          <label>
+            <input type="checkbox" value="Difusores">
+            <span>Difusores</span>
+          </label>
+          <label>
+            <input type="checkbox" value="Home Sprays">
+            <span>Home Sprays</span>
+          </label>
         </div>
         <div class="button-center">
           <button class="prev-btn" onclick="prevStep()">Atrás</button>
@@ -115,7 +133,7 @@
       <div class="form-step" id="step-4">
         <h3>Tu recomendación personalizada</h3>
         <p id="result-text"></p>
-        <a href="https://wa.link/nxvz0o" target="_blank" class="whatsapp-final-btn">
+        <a href="https://wa.me/?text=" target="_blank" class="whatsapp-final-btn">
           Hablar por WhatsApp
         </a>
       </div>
@@ -128,9 +146,9 @@
       <h2>Portfolio</h2>
       <p>Conocé algunos de nuestros productos en acción</p>
       <div class="gallery">
-        <img src="assets/p1.jpg" alt="Portfolio 1">
-        <img src="assets/p2.jpg" alt="Portfolio 2">
-        <img src="assets/p3.jpg" alt="Portfolio 3">
+        <img src="assets/p1.jpg" alt="Producto Velaroma 1">
+        <img src="assets/p2.jpg" alt="Producto Velaroma 2">
+        <img src="assets/p3.jpg" alt="Producto Velaroma 3">
       </div>
     </div>
   </section>
@@ -146,20 +164,39 @@
     const totalSteps = 4;
     const formData = { small: 0, medium: 0, large: 0 };
 
-    function updateCounter(type, value) {
-      formData[type] = Math.max(0, formData[type] + value);
-      document.getElementById(`${type}-count`).innerText = formData[type];
+    function updateStepper() {
+      const pct = (currentStep / totalSteps) * 100;
+      document.getElementById('step-label').textContent = `Paso ${currentStep} de ${totalSteps}`;
+      document.getElementById('stepper-progress').style.width = `${pct}%`;
+    }
+
+    function sumSpaces() {
+      return formData.small + formData.medium + formData.large;
+    }
+
+    function canProceed(step) {
+      if (step === 1) return sumSpaces() > 0;
+      if (step === 2) return document.querySelectorAll('.checkbox-group input:checked').length > 0;
+      if (step === 3) {
+        const name = document.getElementById('name').value.trim();
+        const wa = document.getElementById('whatsapp').value.trim();
+        const mail = document.getElementById('email').value.trim();
+        return name && wa && mail;
+      }
+      return true;
     }
 
     function nextStep() {
+      if (!canProceed(currentStep)) {
+        alert('Completá este paso antes de continuar.');
+        return;
+      }
       if (currentStep < totalSteps) {
         document.getElementById(`step-${currentStep}`).classList.remove("active");
         currentStep++;
         document.getElementById(`step-${currentStep}`).classList.add("active");
-
-        if (currentStep === 4) {
-          calculateResults();
-        }
+        if (currentStep === 4) calculateResults();
+        updateStepper();
       }
     }
 
@@ -168,16 +205,34 @@
         document.getElementById(`step-${currentStep}`).classList.remove("active");
         currentStep--;
         document.getElementById(`step-${currentStep}`).classList.add("active");
+        updateStepper();
       }
+    }
+
+    function updateCounter(type, value) {
+      formData[type] = Math.max(0, formData[type] + value);
+      document.getElementById(`${type}-count`).innerText = formData[type];
     }
 
     function calculateResults() {
       const totalProducts = (formData.small * 1) + (formData.medium * 2) + (formData.large * 3);
+      const prefs = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(e => e.value);
+      const name = document.getElementById('name').value.trim();
+
       document.getElementById("result-text").innerHTML = `
         <strong>Total recomendado:</strong> ${totalProducts} productos<br>
-        ¡Hacé clic en el botón de WhatsApp para recibir tu propuesta personalizada!
+        Preferencias: ${prefs.join(', ')}
       `;
+
+      const msg = `Hola! Soy ${name}. Quiero mi kit Velaroma.%0A` +
+                  `Espacios: pequeños ${formData.small}, medianos ${formData.medium}, grandes ${formData.large}.%0A` +
+                  `Preferencias: ${prefs.join(', ')}.%0A` +
+                  `Total recomendado: ${totalProducts} productos.`;
+
+      document.querySelector('.whatsapp-final-btn').href = `https://wa.me/?text=${msg}`;
     }
+
+    document.addEventListener('DOMContentLoaded', updateStepper);
   </script>
 </body>
 </html>
