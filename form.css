@@ -1,4 +1,6 @@
-/* General */
+/* ================================
+   ESTILOS GENERALES
+================================ */
 body {
   margin: 0;
   padding: 24px;
@@ -13,25 +15,66 @@ body {
   margin: 0 auto;
 }
 
-/* Stepper */
-.stepper { margin-bottom: 16px; }
-.stepper-label { text-align: center; font-size: 14px; color: #555; margin-bottom: 8px; }
-.stepper-bar { width: 100%; height: 8px; background: #eee; border-radius: 999px; overflow: hidden; }
-#stepper-progress { height: 100%; width: 25%; background: #000; transition: width 0.25s ease; }
+/* ================================
+   STEPPER (INDICADOR DE PASOS)
+================================ */
+.stepper {
+  margin-bottom: 16px;
+}
 
-/* Step visibility */
-.form-step { display: none; }
-.form-step.active { display: block; }
+.stepper-label {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 8px;
+}
 
-/* Cards Paso 1 */
+.stepper-bar {
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+#stepper-progress {
+  height: 100%;
+  width: 25%;
+  background: #000;
+  transition: width 0.25s ease;
+}
+
+/* ================================
+   VISIBILIDAD DE PASOS
+================================ */
+.form-step {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.form-step.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================
+   PASO 1 - SELECCIÓN DE ESPACIOS
+================================ */
 .cards {
   display: grid;
   gap: 14px;
   justify-content: center;
+  margin-top: 20px;
 }
 
 @media (min-width: 720px) {
-  .cards { grid-template-columns: repeat(3, 1fr); }
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .card {
@@ -39,6 +82,7 @@ body {
   border-radius: 12px;
   padding: 14px;
   text-align: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .card img {
@@ -47,9 +91,27 @@ body {
   margin-bottom: 8px;
 }
 
+.card h4 {
+  margin: 8px 0 4px;
+  font-size: 18px;
+}
+
+.size-range {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.examples {
+  color: #666;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
 .counter {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 8px;
 }
 
@@ -62,6 +124,11 @@ body {
   border-radius: 8px;
   cursor: pointer;
   border: none;
+  transition: background 0.3s ease;
+}
+
+.counter button:hover {
+  background: #333;
 }
 
 .counter span {
@@ -70,44 +137,66 @@ body {
   text-align: center;
 }
 
-/* Paso 2 */
+/* ================================
+   PASO 2 - OPCIONES DE PRODUCTOS
+================================ */
 .option-cards {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 20px;
   margin-top: 20px;
   flex-wrap: wrap;
 }
 
 .option-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   cursor: pointer;
-  text-align: center;
 }
 
-.option-card input { display: none; }
+.option-card input {
+  display: none;
+}
 
 .option-card .option-content {
+  width: 120px;
+  padding: 14px;
   border: 2px solid #ddd;
   border-radius: 12px;
-  padding: 10px;
-  width: 120px;
+  text-align: center;
   transition: all 0.3s ease;
-}
-
-.option-card input:checked + .option-content {
-  background: #000;
-  border-color: #000;
-  color: #fff;
+  background: #fff;
 }
 
 .option-card img {
   width: 60px;
   height: 60px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  transition: filter 0.3s ease;
 }
 
-/* Paso 3 */
+.option-card span {
+  font-weight: 600;
+}
+
+.option-card input:checked + .option-content {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.option-card input:checked + .option-content img {
+  filter: brightness(0) invert(1);
+}
+
+/* ================================
+   PASO 3 - FORMULARIO DE CONTACTO
+================================ */
+#contact-form {
+  margin-top: 20px;
+}
+
 #contact-form input {
   width: 90%;
   padding: 12px;
@@ -116,14 +205,19 @@ body {
   border-radius: 8px;
   font-size: 16px;
   display: block;
+  background: #fafafa;
+  transition: border 0.3s ease, background 0.3s ease;
 }
 
 #contact-form input:focus {
   border-color: #000;
+  background: #fff;
   outline: none;
 }
 
-/* Botones */
+/* ================================
+   BOTONES
+================================ */
 .button-center {
   display: flex;
   justify-content: center;
@@ -138,10 +232,20 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.next-btn:hover {
+  background: #333;
 }
 
 .prev-btn {
   background: #c1a78f;
+}
+
+.prev-btn:hover {
+  background: #b1947f;
 }
 
 .whatsapp-final-btn {
@@ -151,15 +255,62 @@ body {
   border-radius: 10px;
   font-weight: bold;
   text-decoration: none;
+  transition: background 0.3s ease;
 }
 
-/* Resumen */
+.whatsapp-final-btn:hover {
+  background: #1ebe5c;
+}
+
+/* ================================
+   RESUMEN
+================================ */
 .summary-box {
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 12px;
-  padding: 12px;
+  padding: 16px;
   margin: 0 auto 16px auto;
   width: 90%;
   text-align: center;
+  font-size: 14px;
+}
+
+.summary-box strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* ================================
+   TEXTO DE URGENCIA
+================================ */
+.urgency {
+  text-align: center;
+  color: #c00;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .option-card .option-content {
+    width: 100px;
+    padding: 10px;
+  }
+
+  .option-card img {
+    width: 50px;
+    height: 50px;
+  }
+
+  #contact-form input {
+    width: 100%;
+  }
 }
