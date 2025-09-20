@@ -66,24 +66,45 @@
         </div>
       </div>
 
-      <p class="tip">Cada espacio requiere puntos de aroma para cubrirlo: Pequeño = 1 punto, Mediano = 2 puntos, Grande = 3 puntos.</p>
-
       <div class="button-center">
         <button class="next-btn" onclick="goToStep2()">Continuar</button>
       </div>
     </div>
 
-    <!-- PASO 2: Puntos de aroma y preferencia -->
+    <!-- PASO 2: Puntos de aroma y preferencia visual -->
     <div class="form-step" id="step-2">
       <h3>Resultados iniciales</h3>
       <div id="points-summary" class="summary-box"></div>
 
       <h4>¿Cómo te gustaría cubrir estos puntos?</h4>
-      <p>Podés elegir más de una opción</p>
-      <div class="checkbox-group">
-        <label><input type="checkbox" value="Difusores"><span>Difusores</span></label>
-        <label><input type="checkbox" value="Velas"><span>Velas</span></label>
-        <label><input type="checkbox" value="Home Sprays"><span>Home Sprays</span></label>
+      <p>Selecciona una o más opciones</p>
+      <div class="option-cards">
+        <!-- Difusores -->
+        <label class="option-card">
+          <input type="checkbox" value="Difusores">
+          <div class="option-content">
+            <img src="assets/DIFUSOR.png" alt="Difusor">
+            <span>Difusores</span>
+          </div>
+        </label>
+
+        <!-- Velas -->
+        <label class="option-card">
+          <input type="checkbox" value="Velas">
+          <div class="option-content">
+            <img src="assets/VELA.png" alt="Vela">
+            <span>Velas</span>
+          </div>
+        </label>
+
+        <!-- Home Sprays -->
+        <label class="option-card">
+          <input type="checkbox" value="Home Sprays">
+          <div class="option-content">
+            <img src="assets/SPRAY.png" alt="Spray">
+            <span>Home Sprays</span>
+          </div>
+        </label>
       </div>
 
       <div class="button-center">
