@@ -63,8 +63,8 @@ body {
 
 /* --- HERO --- */
 .hero {
-  background: url('assets/p3.jpg') center/cover no-repeat;
-  height: 60vh;
+  background: url('assets/P3.jpg') center/cover no-repeat;
+  height: 50vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,11 +75,11 @@ body {
 
 .hero-content h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 48px;
+  font-size: 40px;
 }
 
 .hero-content p {
-  font-size: 20px;
+  font-size: 18px;
   margin: 10px 0 20px;
 }
 
@@ -98,34 +98,40 @@ body {
 
 /* --- FORMULARIO --- */
 .form-section {
-  padding: 60px 20px;
-  background: #fefefe;
+  padding: 40px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-container {
   background: white;
-  padding: 30px;
+  padding: 30px 20px;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  max-width: 800px;
+  max-width: 600px;
+  width: 100%;
   margin: auto;
+  text-align: center;
 }
 
 .form-container h2 {
   font-family: 'Playfair Display', serif;
   font-size: 28px;
   margin-bottom: 10px;
+  color: #222;
 }
 
 .subtitle {
   font-size: 14px;
   color: #777;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
+/* Cards */
 .cards {
   display: grid;
-  gap: 20px;
+  gap: 15px;
 }
 
 @media (min-width: 768px) {
@@ -139,29 +145,46 @@ body {
   border-radius: 12px;
   padding: 15px;
   text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
 }
 
 .card img {
   width: 100%;
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
 }
 
+.card h4 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Contador */
 .counter {
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .counter button {
   background: #111;
   color: white;
   border: none;
-  padding: 5px 12px;
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .counter span {
@@ -170,35 +193,68 @@ body {
   text-align: center;
 }
 
+/* Botones generales */
 .button-center {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .next-btn, .prev-btn {
   background: #000;
   color: white;
+  border: none;
   padding: 12px 24px;
   border-radius: 8px;
   cursor: pointer;
-  border: none;
+  font-size: 16px;
+  transition: background 0.2s ease;
+  min-width: 120px;
 }
 
 .prev-btn {
   background: #c1a78f;
 }
 
-/* --- WHATSAPP FINAL --- */
+.next-btn:hover, .prev-btn:hover {
+  opacity: 0.9;
+}
+
+/* Inputs */
+#contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+#contact-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+/* Botón final WhatsApp */
 .whatsapp-final-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
   background: #25D366;
   color: white;
-  padding: 14px 28px;
-  border-radius: 12px;
+  padding: 14px 0;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
   font-size: 16px;
+  margin-top: 20px;
+  transition: background 0.2s ease;
+}
+
+.whatsapp-final-btn:hover {
+  background: #1DA851;
 }
 
 /* --- PORTFOLIO --- */
@@ -228,4 +284,3 @@ body {
   padding: 20px;
   margin-top: 40px;
 }
-
