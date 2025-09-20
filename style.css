@@ -63,7 +63,7 @@ body {
 
 /* --- HERO --- */
 .hero {
-  background: url('assets/grande.jpg') center/cover no-repeat;
+  background: url('assets/p3.jpg') center/cover no-repeat;
   height: 60vh;
   display: flex;
   align-items: center;
@@ -228,3 +228,4 @@ body {
   padding: 20px;
   margin-top: 40px;
 }
+
