@@ -72,12 +72,6 @@ function validateStep3() {
   changeStep(4);
 }
 
-function sendEmail(name, whatsapp, email) {
-  const subject = "Nuevo cálculo de combo Velaroma";
-  const body = `Nombre: ${name}%0AWhatsApp: ${whatsapp}%0AEmail: ${email}`;
-  window.open(`mailto:agustin.casarin28@gmail.com?subject=${subject}&body=${body}`);
-}
-
 function generateFinalRecommendation() {
   let remaining = formData.totalPoints;
   const distribution = { Difusores: 0, Velas: 0, "Home Sprays": 0 };
