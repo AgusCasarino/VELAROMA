@@ -21,17 +21,16 @@
     <h2>Calcula tu kit ideal</h2>
     <p class="subtitle">Descubrí cuántos puntos de aroma necesitás y personalizá tu experiencia Velaroma.</p>
 
-    <!-- PASO 1: Cantidad de ambientes -->
+    <!-- PASO 1 -->
     <div class="form-step active" id="step-1">
       <h3>¿Cuántos espacios querés aromatizar?</h3>
-
       <div class="cards">
         <!-- Pequeños -->
         <div class="card">
           <img src="assets/pequeño.jpg" alt="Espacio pequeño" loading="lazy">
           <h4>Pequeños</h4>
           <p class="size-range">&lt; 15 m²</p>
-          <p class="examples">Ejemplo: baño, toilette, recibidor, cuarto chico.</p>
+          <p class="examples">Baños, toilette, recibidor, cuarto chico</p>
           <div class="counter">
             <button onclick="updateCounter('small', -1)">−</button>
             <span id="small-count">0</span>
@@ -44,7 +43,7 @@
           <img src="assets/mediano.jpg" alt="Espacio mediano" loading="lazy">
           <h4>Medianos</h4>
           <p class="size-range">15 – 25 m²</p>
-          <p class="examples">Ejemplo: dormitorio, oficina, estudio.</p>
+          <p class="examples">Dormitorio, oficina, estudio</p>
           <div class="counter">
             <button onclick="updateCounter('medium', -1)">−</button>
             <span id="medium-count">0</span>
@@ -57,7 +56,7 @@
           <img src="assets/grande.jpg" alt="Espacio grande" loading="lazy">
           <h4>Grandes</h4>
           <p class="size-range">&gt; 25 m²</p>
-          <p class="examples">Ejemplo: living, cocina-comedor, ambientes integrados.</p>
+          <p class="examples">Living, cocina-comedor, ambientes integrados</p>
           <div class="counter">
             <button onclick="updateCounter('large', -1)">−</button>
             <span id="large-count">0</span>
@@ -65,21 +64,19 @@
           </div>
         </div>
       </div>
-
       <div class="button-center">
         <button class="next-btn" onclick="goToStep2()">Continuar</button>
       </div>
     </div>
 
-    <!-- PASO 2: Puntos de aroma y preferencia visual -->
+    <!-- PASO 2 -->
     <div class="form-step" id="step-2">
       <h3>Resultados iniciales</h3>
       <div id="points-summary" class="summary-box"></div>
-
       <h4>¿Cómo te gustaría cubrir estos puntos?</h4>
       <p>Selecciona una o más opciones</p>
+
       <div class="option-cards">
-        <!-- Difusores -->
         <label class="option-card">
           <input type="checkbox" value="Difusores">
           <div class="option-content">
@@ -88,7 +85,6 @@
           </div>
         </label>
 
-        <!-- Velas -->
         <label class="option-card">
           <input type="checkbox" value="Velas">
           <div class="option-content">
@@ -97,7 +93,6 @@
           </div>
         </label>
 
-        <!-- Home Sprays -->
         <label class="option-card">
           <input type="checkbox" value="Home Sprays">
           <div class="option-content">
@@ -109,11 +104,11 @@
 
       <div class="button-center">
         <button class="prev-btn" onclick="prevStep()">Atrás</button>
-        <button class="next-btn" onclick="nextStep()">Continuar</button>
+        <button class="next-btn" onclick="validateStep2()">Continuar</button>
       </div>
     </div>
 
-    <!-- PASO 3: Datos de contacto -->
+    <!-- PASO 3 -->
     <div class="form-step" id="step-3">
       <h3>¡Ya casi está listo tu cálculo!</h3>
       <form id="contact-form" onsubmit="return false;">
@@ -123,22 +118,23 @@
       </form>
       <div class="button-center">
         <button class="prev-btn" onclick="prevStep()">Atrás</button>
-        <button class="next-btn" onclick="nextStep()">Ver resultado</button>
+        <button class="next-btn" onclick="validateStep3()">Ver resultado</button>
       </div>
     </div>
 
-    <!-- PASO 4: Resultado final -->
+    <!-- PASO 4 -->
     <div class="form-step" id="step-4">
       <h3>Tu combo recomendado</h3>
       <div id="final-recommendation" class="summary-box"></div>
-
       <p class="urgency">
         Conseguí un <strong>20% de descuento</strong> en tu combo personalizado pidiendo en los próximos <strong>30 minutos</strong>.
       </p>
-
-      <a id="whatsapp-btn" href="#" target="_blank" class="whatsapp-final-btn">
-        Pedilo por WhatsApp
-      </a>
+      <div class="button-center">
+        <button class="prev-btn" onclick="prevStep()">Atrás</button>
+        <a id="whatsapp-btn" href="#" target="_blank" class="whatsapp-final-btn">
+          Pedilo por WhatsApp
+        </a>
+      </div>
     </div>
   </div>
 
