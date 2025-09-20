@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora Velaroma</title>
+  <link rel="stylesheet" href="form.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="form-container">
+    <!-- Stepper -->
+    <div class="stepper">
+      <div class="stepper-label"><span id="step-label">Paso 1 de 4</span></div>
+      <div class="stepper-bar"><div id="stepper-progress"></div></div>
+    </div>
+
+    <h2>Calcula tu kit ideal</h2>
+    <p class="subtitle">Diseñá tu experiencia única y descubrí cuántos productos necesitás para tus espacios.</p>
+
+    <!-- PASO 1 -->
+    <div class="form-step active" id="step-1">
+      <h3>¿Cuántos espacios querés aromatizar?</h3>
+
+      <div class="cards">
+        <!-- Pequeños -->
+        <div class="card">
+          <img src="assets/pequeño.jpg" alt="Espacio pequeño" loading="lazy">
+          <h4>Pequeños</h4>
+          <p class="size-range">&lt; 15 m²</p>
+          <p class="examples">Ejemplos: baño, toilette, recibidor, cuarto chico.</p>
+          <div class="counter">
+            <button aria-label="Decrementar pequeños" onclick="updateCounter('small', -1)">−</button>
+            <span id="small-count">0</span>
+            <button aria-label="Incrementar pequeños" onclick="updateCounter('small', 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Medianos -->
+        <div class="card">
+          <img src="assets/mediano.jpg" alt="Espacio mediano" loading="lazy">
+          <h4>Medianos</h4>
+          <p class="size-range">15 – 25 m²</p>
+          <p class="examples">Ejemplos: habitación, oficina/estudio, dormitorio.</p>
+          <div class="counter">
+            <button aria-label="Decrementar medianos" onclick="updateCounter('medium', -1)">−</button>
+            <span id="medium-count">0</span>
+            <button aria-label="Incrementar medianos" onclick="updateCounter('medium', 1)">+</button>
+          </div>
+        </div>
+
+        <!-- Grandes -->
+        <div class="card">
+          <img src="assets/grande.jpg" alt="Espacio grande" loading="lazy">
+          <h4>Grandes</h4>
+          <p class="size-range">&gt; 25 m²</p>
+          <p class="examples">Ejemplos: living, cocina-comedor, ambientes integrados.</p>
+          <div class="counter">
+            <button aria-label="Decrementar grandes" onclick="updateCounter('large', -1)">−</button>
+            <span id="large-count">0</span>
+            <button aria-label="Incrementar grandes" onclick="updateCounter('large', 1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="tip">Tip: si tenés espacios integrados (por ej. living + cocina), contalos como <strong>grande</strong>.</p>
+
+      <div class="button-center">
+        <button class="next-btn" onclick="nextStep()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="form-step" id="step-2">
+      <h3>¿Cómo preferís aromatizar tus espacios?</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="Velas"><span>Velas</span></label>
+        <label><input type="checkbox" value="Difusores"><span>Difusores</span></label>
+        <label><input type="checkbox" value="Home Sprays"><span>Home Sprays</span></label>
+      </div>
+      <div class="button-center">
+        <button class="prev-btn" onclick="prevStep()">Atrás</button>
+        <button class="next-btn" onclick="nextStep()">Continuar</button>
+      </div>
+    </div>
+
+    <!-- PASO 3 -->
+    <div class="form-step" id="step-3">
+      <h3>¡Ya casi está listo tu cálculo!</h3>
+      <form id="contact-form" onsubmit="return false;">
+        <input type="text" id="name" placeholder="Nombre completo" required>
+        <input type="tel" id="whatsapp" placeholder="WhatsApp" required>
+        <input type="email" id="email" placeholder="Email" required>
+      </form>
+      <div class="button-center">
+        <button class="prev-btn" onclick="prevStep()">Atrás</button>
+        <button class="next-btn" onclick="nextStep()">Ver resultado</button>
+      </div>
+    </div>
+
+    <!-- PASO 4 -->
+    <div class="form-step" id="step-4">
+      <h3>Tu recomendación personalizada</h3>
+      <p id="result-text"></p>
+      <a href="https://wa.me/?text=" target="_blank" class="whatsapp-final-btn">Hablar por WhatsApp</a>
+    </div>
+  </div>
+
+  <script src="form.js"></script>
+</body>
+</html>
