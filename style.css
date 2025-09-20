@@ -34,20 +34,8 @@ body {
   padding: 15px 0;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 .logo img {
   height: 40px;
-}
-
-.logo span {
-  font-family: 'Playfair Display', serif;
-  font-size: 20px;
-  letter-spacing: 2px;
 }
 
 .nav a {
@@ -63,33 +51,26 @@ body {
 
 /* --- HERO --- */
 .hero {
-  background: url('assets/p3.jpg') center/cover no-repeat;
-  height: 50vh;
+  background: url('assets/logo.png') center/cover no-repeat;
+  height: 55vh;
+  position: relative;
+}
+
+.hero-overlay {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  color: white;
-  padding: 20px;
-}
-
-.hero-content h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 40px;
-}
-
-.hero-content p {
-  font-size: 18px;
-  margin: 10px 0 20px;
+  height: 100%;
 }
 
 .cta-button {
   background: #c1a78f;
   color: white;
-  padding: 12px 24px;
+  padding: 14px 28px;
   border-radius: 8px;
   text-decoration: none;
   font-weight: bold;
+  font-size: 18px;
 }
 
 .cta-button:hover {
@@ -101,7 +82,6 @@ body {
   padding: 40px 15px;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .form-container {
@@ -109,9 +89,8 @@ body {
   padding: 30px 20px;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  max-width: 600px;
+  max-width: 720px;
   width: 100%;
-  margin: auto;
   text-align: center;
 }
 
@@ -127,6 +106,12 @@ body {
   color: #777;
   margin-bottom: 25px;
 }
+
+/* Stepper */
+.stepper { margin-bottom: 16px; }
+.stepper-label { font-size: 14px; color:#666; margin-bottom:8px; text-align:center; }
+.stepper-bar { width:100%; height:8px; background:#eee; border-radius:999px; overflow:hidden; }
+#stepper-progress { height:100%; width:25%; background:#000; border-radius:999px; transition:width .25s ease; }
 
 /* Cards */
 .cards {
@@ -169,7 +154,7 @@ body {
   color: #555;
 }
 
-/* Contador */
+/* Counter */
 .counter {
   display: flex;
   justify-content: center;
@@ -193,7 +178,7 @@ body {
   text-align: center;
 }
 
-/* Botones generales */
+/* Botones */
 .button-center {
   display: flex;
   justify-content: center;
@@ -222,6 +207,33 @@ body {
   opacity: 0.9;
 }
 
+/* Checkbox - como chips */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.checkbox-group label {
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #fff;
+  transition: all .15s ease;
+}
+
+.checkbox-group input { display: none; }
+
+.checkbox-group label input:checked + span,
+.checkbox-group label:has(input:checked) {
+  border-color: #000;
+  background: #111;
+  color: #fff;
+}
+
 /* Inputs */
 #contact-form {
   display: grid;
@@ -237,7 +249,7 @@ body {
   font-size: 16px;
 }
 
-/* Botón final WhatsApp */
+/* WhatsApp final */
 .whatsapp-final-btn {
   display: block;
   width: 100%;
@@ -257,7 +269,7 @@ body {
   background: #1DA851;
 }
 
-/* --- PORTFOLIO --- */
+/* Portfolio */
 .portfolio {
   padding: 60px 20px;
   text-align: center;
@@ -276,7 +288,7 @@ body {
   object-fit: cover;
 }
 
-/* --- FOOTER --- */
+/* Footer */
 .footer {
   background: #1b3326;
   color: white;
@@ -284,4 +296,3 @@ body {
   padding: 20px;
   margin-top: 40px;
 }
-
