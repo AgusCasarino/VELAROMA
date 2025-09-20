@@ -1,11 +1,13 @@
-/* Base */
+/* General */
 body {
   margin: 0;
   padding: 24px;
   background: #fff;
   font-family: 'Inter', sans-serif;
   color: #333;
+  text-align: center;
 }
+
 .form-container {
   max-width: 720px;
   margin: 0 auto;
@@ -17,66 +19,64 @@ body {
 .stepper-bar { width: 100%; height: 8px; background: #eee; border-radius: 999px; overflow: hidden; }
 #stepper-progress { height: 100%; width: 25%; background: #000; transition: width 0.25s ease; }
 
-/* Form steps visibility */
-.form-step {
-  display: none;
-}
-.form-step.active {
-  display: block;
-}
+/* Step visibility */
+.form-step { display: none; }
+.form-step.active { display: block; }
 
 /* Cards Paso 1 */
 .cards {
   display: grid;
   gap: 14px;
+  justify-content: center;
 }
+
 @media (min-width: 720px) {
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  .cards { grid-template-columns: repeat(3, 1fr); }
 }
+
 .card {
   background: #f6f6f6;
   border-radius: 12px;
   padding: 14px;
   text-align: center;
 }
+
 .card img {
   width: 100%;
   border-radius: 8px;
   margin-bottom: 8px;
 }
-.card h4 { margin: 8px 0 4px; }
-.size-range { color: #555; font-size: 14px; }
-.examples { color: #666; font-size: 12px; margin-bottom: 10px; }
+
 .counter {
   display: flex;
   justify-content: center;
-  align-items: center;
   gap: 8px;
 }
+
 .counter button {
   min-width: 36px;
   height: 36px;
-  border: none;
   background: #000;
   color: #fff;
   font-size: 18px;
   border-radius: 8px;
   cursor: pointer;
-}
-.counter span {
-  min-width: 24px;
-  text-align: center;
-  font-weight: 600;
+  border: none;
 }
 
-/* Paso 2: Opciones visuales */
+.counter span {
+  font-weight: 600;
+  width: 30px;
+  text-align: center;
+}
+
+/* Paso 2 */
 .option-cards {
-  display: grid;
+  display: flex;
+  justify-content: center;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   margin-top: 20px;
+  flex-wrap: wrap;
 }
 
 .option-card {
@@ -85,16 +85,20 @@ body {
   text-align: center;
 }
 
-.option-card input {
-  display: none;
-}
+.option-card input { display: none; }
 
 .option-card .option-content {
   border: 2px solid #ddd;
   border-radius: 12px;
   padding: 10px;
+  width: 120px;
   transition: all 0.3s ease;
-  background: #f9f9f9;
+}
+
+.option-card input:checked + .option-content {
+  background: #000;
+  border-color: #000;
+  color: #fff;
 }
 
 .option-card img {
@@ -103,29 +107,30 @@ body {
   margin-bottom: 8px;
 }
 
-.option-card span {
+/* Paso 3 */
+#contact-form input {
+  width: 90%;
+  padding: 12px;
+  margin: 8px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
   display: block;
-  font-size: 14px;
-  font-weight: 600;
 }
 
-.option-card input:checked + .option-content {
+#contact-form input:focus {
   border-color: #000;
-  background: #000;
-  color: #fff;
+  outline: none;
 }
 
-.option-card input:checked + .option-content img {
-  filter: brightness(0) invert(1);
-}
-
-/* Buttons */
+/* Botones */
 .button-center {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin-top: 16px;
 }
+
 .next-btn, .prev-btn {
   background: #000;
   color: #fff;
@@ -134,36 +139,27 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
 .prev-btn {
   background: #c1a78f;
 }
+
 .whatsapp-final-btn {
-  display: block;
-  text-align: center;
   background: #25D366;
   color: #fff;
-  padding: 14px 0;
+  padding: 14px 24px;
   border-radius: 10px;
   font-weight: bold;
   text-decoration: none;
-  margin-top: 16px;
 }
 
-/* Summary */
+/* Resumen */
 .summary-box {
   background: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 12px;
-  margin-bottom: 16px;
-  text-align: left;
-}
-.summary-box strong {
-  display: block;
-  margin-bottom: 8px;
-}
-.urgency {
+  margin: 0 auto 16px auto;
+  width: 90%;
   text-align: center;
-  color: #c00;
-  font-weight: 600;
 }
