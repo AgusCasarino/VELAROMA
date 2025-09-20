@@ -37,75 +37,78 @@ function goToStep2() {
   formData.totalPoints = calculateTotalPoints();
 
   const summary = `
-    EN TU CASO TE RECOMENDAMOS USAR un total de <strong>${formData.totalPoints} puntos de aroma</strong>:<br><br>
+    EN TU CASO TE RECOMENDAMOS USAR un total de <strong>${formData.totalPoints} puntos de aroma</strong><br><br>
     ${formData.small > 0 ? `${formData.small * 1} punto(s) para tus espacios pequeños.<br>` : ""}
     ${formData.medium > 0 ? `${formData.medium * 2} puntos para tus espacios medianos.<br>` : ""}
     ${formData.large > 0 ? `${formData.large * 3} puntos para tus espacios grandes o abiertos.` : ""}
   `;
   document.getElementById("points-summary").innerHTML = summary;
 
-  document.getElementById(`step-${currentStep}`).classList.remove("active");
-  currentStep = 2;
-  document.getElementById(`step-${currentStep}`).classList.add("active");
-  updateStepper();
+  changeStep(2);
 }
 
-function nextStep() {
-  document.getElementById(`step-${currentStep}`).classList.remove("active");
-  currentStep++;
-  document.getElementById(`step-${currentStep}`).classList.add("active");
-  updateStepper();
-}
-
-function prevStep() {
-  document.getElementById(`step-${currentStep}`).classList.remove("active");
-  currentStep--;
-  document.getElementById(`step-${currentStep}`).classList.add("active");
-  updateStepper();
-}
-
-function generateFinalRecommendation() {
-  const selectedPrefs = Array.from(document.querySelectorAll('.option-cards input:checked')).map(e => e.value);
-
+function validateStep2() {
+  const selectedPrefs = Array.from(document.querySelectorAll('.option-cards input:checked'));
   if (selectedPrefs.length === 0) {
-    alert("Selecciona al menos una opción para cubrir los puntos de aroma.");
-    prevStep();
+    alert("Por favor selecciona al menos una opción para cubrir los puntos de aroma.");
+    return;
+  }
+  formData.prefs = selectedPrefs.map(e => e.value);
+  changeStep(3);
+}
+
+function validateStep3() {
+  const name = document.getElementById("name").value.trim();
+  const whatsapp = document.getElementById("whatsapp").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if (!name || !whatsapp || !email) {
+    alert("Por favor completa todos los campos antes de continuar.");
     return;
   }
 
-  formData.prefs = selectedPrefs;
+  sendEmail(name, whatsapp, email);
+  generateFinalRecommendation();
+  changeStep(4);
+}
 
+function sendEmail(name, whatsapp, email) {
+  const subject = "Nuevo cálculo de combo Velaroma";
+  const body = `Nombre: ${name}%0AWhatsApp: ${whatsapp}%0AEmail: ${email}`;
+  window.open(`mailto:agustin.casarin28@gmail.com?subject=${subject}&body=${body}`);
+}
+
+function generateFinalRecommendation() {
   let remaining = formData.totalPoints;
   const distribution = { Difusores: 0, Velas: 0, "Home Sprays": 0 };
 
-  if (selectedPrefs.includes("Difusores")) {
+  if (formData.prefs.includes("Difusores")) {
     const asign = Math.ceil(remaining / 2);
     distribution.Difusores = asign;
     remaining -= asign;
   }
-  if (selectedPrefs.includes("Velas") && remaining > 0) {
-    const asign = selectedPrefs.length === 2 ? remaining : Math.floor(remaining / 2);
+  if (formData.prefs.includes("Velas") && remaining > 0) {
+    const asign = formData.prefs.length === 2 ? remaining : Math.floor(remaining / 2);
     distribution.Velas = asign;
     remaining -= asign;
   }
-  if (selectedPrefs.includes("Home Sprays") && remaining > 0) {
+  if (formData.prefs.includes("Home Sprays") && remaining > 0) {
     distribution["Home Sprays"] = remaining;
   }
 
-  for (const type of selectedPrefs) {
+  for (const type of formData.prefs) {
     if (distribution[type] === 0) {
       distribution[type] = 1;
     }
   }
 
-  const parts = Object.entries(distribution)
+  const finalText = Object.entries(distribution)
     .filter(([_, qty]) => qty > 0)
-    .map(([type, qty]) => `${qty} ${type}`);
+    .map(([type, qty]) => `${qty} ${type}`)
+    .join(", ");
 
-  const finalText = parts.join(", ");
   document.getElementById("final-recommendation").innerHTML = `
-    <strong>Te recomendamos:</strong><br>
-    ${finalText}
+    <strong>Te recomendamos:</strong><br>${finalText}
   `;
 
   const waMessage = `Hola quiero mi combo de ${finalText} con mi 20%`;
@@ -113,12 +116,13 @@ function generateFinalRecommendation() {
     `https://wa.me/5491151081577?text=${encodeURIComponent(waMessage)}`;
 }
 
+function changeStep(step) {
+  document.getElementById(`step-${currentStep}`).classList.remove("active");
+  currentStep = step;
+  document.getElementById(`step-${currentStep}`).classList.add("active");
+  updateStepper();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   updateStepper();
-
-  const step3NextButton = document.querySelector("#step-3 .next-btn");
-  step3NextButton.addEventListener("click", () => {
-    generateFinalRecommendation();
-    nextStep();
-  });
 });
