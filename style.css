@@ -18,7 +18,7 @@ body {
 
 /* ====== Hero ====== */
 .hero {
-  background: url('assets/p3.jpg') center/cover no-repeat;
+  background: url('assets/HERO.PNG') center/cover no-repeat;
   height: 55vh; min-height: 420px; position: relative;
   display: grid; place-items: center;
 }
