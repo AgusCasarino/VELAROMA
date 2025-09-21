@@ -1,0 +1,71 @@
+:root {
+  --brand:#0f2b20;
+  --accent:#c1a78f;
+  --text:#222;
+  --muted:#666;
+  --bg:#fff;
+  --bg-soft:#f6f6f6;
+  --radius:12px;
+  --shadow:0 1px 8px rgba(0,0,0,.06);
+}
+
+/* Global reset */
+* { box-sizing: border-box; }
+body, html { margin: 0; padding: 0; }
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 85vh;
+  background: url('./assets/hero.png') center/cover no-repeat;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.32);
+}
+.hero-overlay {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: inherit;
+}
+.cta-button {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+.cta-button:hover {
+  filter: brightness(.95);
+}
+
+/* Portfolio */
+.portfolio-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  padding: 32px;
+}
+.portfolio-grid img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Sections */
+.section {
+  padding: 64px 24px;
+  text-align: center;
+}
+.section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
