@@ -14,6 +14,20 @@
 </head>
 <body>
 
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo">
+      <img src="./assets/logo.png" alt="Velaroma Logo">
+    </div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#calculadora">Calculadora</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
   <!-- HERO -->
   <section class="hero">
     <div class="hero-overlay">
@@ -22,7 +36,7 @@
   </section>
 
   <!-- PORTFOLIO -->
-  <section class="portfolio section">
+  <section class="portfolio section" id="portfolio">
     <h2>Nuestros Productos</h2>
     <div class="portfolio-grid">
       <img src="./assets/p1.jpg" alt="Producto 1" loading="lazy">
@@ -35,15 +49,15 @@
   <section class="calculator section" id="calculadora">
     <h2>Calcula tu Kit Ideal</h2>
     <div id="form-container">
-      <!-- Aquí se carga todo el formulario -->
       <div id="form-app">
+        
         <!-- PASO 1 -->
         <div class="form-step active" id="step-1">
           <h3>¿Cuántos espacios querés aromatizar?</h3>
           <div class="cards">
             <!-- Pequeños -->
             <div class="card">
-              <img src="./assets/pequeño.jpg" alt="Espacio pequeño" loading="lazy">
+              <img src="./assets/pequeno.jpg" alt="Espacio pequeño" loading="lazy">
               <h4>Pequeños</h4>
               <p class="size-range">&lt; 15 m²</p>
               <p class="examples">Baños, toilette, recibidor, cuarto chico</p>
